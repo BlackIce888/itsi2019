@@ -30,7 +30,7 @@ void drucke_phys_adr(uint64_t virt_adr) {
     int pagemap_file_descriptor = open("/proc/self/pagemap", O_RDONLY);
     
     // Position in der Datei pagemap bestimmen an der gelesen werden soll
-    off_t position = (virt_adr / getpagesize()) * PAGEMAP_LENGTH;
+    off_t position = (virt_adr / getpagesize()) * PAGEMAP_LENGTH-1;
     
     // Pagemap-Datei lesen (Ergebniss wird in value gespeichert).
     // Die PNF befindet sich in den Bits 0-54. Also lesen wir die ersten 7 Bytes und entfernen das 55Bit
