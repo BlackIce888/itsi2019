@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-
 /**
  * Gruppe 7
  * Andreas Diesendorf
@@ -11,7 +6,14 @@
  * 
  * Kompiliert mit:
  * clang -Wall -Wextra -pedantic -std=c99 -g B4A1.c -o B4A1
+ * Ausgeführt: 
+ * ./B4A1
 **/
+
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
 // struct "telefonbucheintrag" definieren der die Form eines Eintrags bestimmt
 typedef struct {
