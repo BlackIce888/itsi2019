@@ -1,0 +1,3 @@
+as -o objcode.o renameAssambler.asm
+
+ld -o programm  objcode.o
