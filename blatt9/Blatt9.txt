@@ -1,0 +1,113 @@
+Aufgabe 1
+
+geheim:
+-Der Angreifer muss zuerst die Schwachstelle finden
+-Es würde dem Ruf der Institution nicht schaden, da niemand davon weiß
+
+
+nicht geheim:
+- Hersteller kann die Schwachstelle beheben
+- Die Öffentlichkeit weiß von der Schwachstelle und handelt vorsichtiger
+- Der Hacker kann die Schwachstelle nutzen, muss es jedoch vor den Verbesserungen des
+Herstellers schaffen
+
+
+Aufgabe 2
+
+Eine Rainbow Table ist eine kompakte Repräsentation von zusammenhängenden Passwortsequenzen, 
+welche auch Ketten (chains), gennant werden. Eine Kette startet mit einem initialen Kennwort,
+das durch eine Hashfunktion geleitet wird. Der Hash der herauskommt, wird durch eine Reduktions-
+funktion geleitet, um ein weiteres Klartextkennwort zu haben. Dieser Prozess wird mit einer
+vorgegebenen Anzahl wiederholt und anschließend wird das erste Kennwort der Kette zusammen
+mit dem Kennwort aus dem letzten Hashwert gespeichert.
+
+Bei dem erstellen der Tabelle muss darauf geachtet werden, dass kein Kennwort, dass in einer
+Kette vorkommt, als Startkennwort verwendet wird und dass alle Kennwörter in der Tabelle
+vorkommen. Die Tabelle wird nur einmal erstellt und dient als Nachschlagetabelle.
+
+Man verwendet einen zweistufigen Prozess um ein Kennwort herauszufinden. Zuerst wird der Hash
+der herauszufindenden Kennwort durch die Hash-Reduktion-Sequenz geführt, bis das Ergebnis der 
+Reduktion in der Tabelle der letzten Kettenglieder vorkommt. Dadurch bekommt man das 
+Startkennwort der Kette und kann anschließend im zweiten Schritt von diesem ausgehend die 
+Hash-Reduktion-Sequenz anwenden, um das gesuchte Kennwort zu erhalten.
+
+Die Länge der Kette, welche auch die Anzahl der Iterationen zur Erstellung der Tabellen 
+sind, wirken sich auf die Größe der Tabelle aus. Je länger die Iteration gewählt werden, 
+desto kleiner ist die entstehende Tabelle. Im einfachsten Fall ist die Anzahl der Iterationen 
+gleich 1, sodass die Tabelle alle Kennwort-Hash-Paare enthält. 
+
+
+Einer Binärfolge wird mithilfe der Hashfunktion eine Binärfolge fester Länge zugeordnet.
+Zu einer zufälligen Zeichenkette der länge n wird ein Hashwert berechnet. Das Ergebniss 
+der Hashfunktion wird durch eine Reduktionsfunktion in eine neue Zeichenkette umgewandelt,
+die wieder der Länge n entspricht. Da die Hintereinanderausführung von Hashfunktion und 
+Reduktionsfunktion die Länge der Zeichenkette nicht ändert, können diese beiden Schritte 
+beliebig oft abwechselnd wiederholt werden. Die Folge bildet am Ende eine Kette und es
+werden Anfangs- und Endwert gespeichert. Diese Schrittfolge wird x mal wiederholt und bildet 
+so eine universelle Rainbow Table.
+
+Eine Reduktionsfunktion verkürzt einen Hashwert auf n Zeichen. Jede Reduktion liefert z. B. 
+durch MD5 eine neue „eindeutige“ 128 bit Zeichenkette, oder eine Kollision. Als eine 
+Kollision bezeichnet man dabei einen Hashwert, der durch verschiedene Ausgangszeichenfolgen 
+erzeugt werden kann. Um Kollisionen zu vermeiden, verwendet man verschiedene 
+Reduktionsfunktionen, die periodisch angewendet eine eindeutige Zuordnung der 
+Eingangs-Zeichenkette und des Ausgangshashes ermöglichen. 
+
+
+Vorteile:
+- effizientere Methode für n-stellige Zeichenketten da beim Brute-Force-Angriff mit 
+Schlüsselsuche viele Zeichenketten in Hashes umgewandelt werden, die mit hoher 
+Wahrscheinlichkeit niemals fallen bzw. gewählt werden 
+
+Aufgabe 3
+
+(1)
+128 Ascii zeichen
+
+f(l)=128^l
+
+f(1)=128 = 1.28*10^2
+f(2)=16384 = 163.84*10^2
+f(3)=2097152 = 20971.52*10^2
+f(4)=268435456 = 2684354.56 *10^2
+f(5)=34359738368 = 343597383.68*10^2
+f(6)=4.40*10^12
+f(7)=5.63*10^14
+f(8)=7.21*10^16
+f(9)= 9.22*10^18
+f(10)= 1.18*10^21 
+
+(2)
+
+128 / 10^9 = 1.28e-7 s
+16384 / 10^9 = 0.000016384 s
+2097152 / 10^9 = 0.002097152 s
+268435456 / 10^9 = 0.268435456 s
+34359738368 / 10^9 = 34.359738368 s
+4.40*10^12 / 10^9 = 4400 s = 73.3333333333333333 min
+5.63*10^14 / 10^9 = 563000 s = 9383.3333333333333333 min = 156.3888888888888888883 h
+7.21*10^16 / 10^9 = 72100000 s = 1201666.6666666666666667 min = 20027.7777777777777777783 h = ungefähr 834 tage
+9.22*10^18 / 10^9 = 9220000000 s = 153666666.6666666666666667 min = 2561111.1111111111111111117 h = ungefähr 106712 tage
+1.18*10^21 / 10^9 = 1180000000000 s = 19666666666.6666666666666667 min = 327777777.7777777777777777783 h = ungefäht 13657407 tage
+
+(3)
+
+Man benötigt 64 byte um einen SHA-512 Hash zu speichern
+=>Base64-Kodierung liefert 22 ASCII-Zeichen => 22byte Speicherplatz
+
+
+1: 128 * 22 = 2816 byte
+2: 16384 * 22 = 360448 byte 
+3: 2097152 * 22= 46137344 byte 
+4: 268435456 * 22 = 5905580032 byte
+5: 34359738368 * 22 = 7,56*10^11
+6: 4.40*10^12 * 22 = 9,68 * 10^13
+7: 5.63*10^14 * 22 = 1,24*10^16
+8: 7.21*10^16 * 22 = 1,59*10^18
+9: 9.22*10^18 * 22 = 2,03*10^20
+10: 1.18*10^21 * 22 = 2,60*10^22
+
+(4)
+
+Das Passswort muss lang sein, damit es viele mögliche Passwörter gibt, wodurch
+es sehr lange dauern würde das Passwort zu hacken. 
